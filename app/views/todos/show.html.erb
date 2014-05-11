@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @todo.content %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @todo.category.name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @todo.user.name %>
+</p>
+
+<p>
+  <strong>Done:</strong>
+  <%= @todo.done %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @todo.priority %>
+</p>
+
+<%= link_to 'Edit', edit_todo_path(@todo) %> |
+<%= link_to 'Back', todos_path %>
