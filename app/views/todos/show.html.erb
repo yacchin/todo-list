@@ -17,12 +17,12 @@
 
 <p>
   <strong>Done:</strong>
-  <%= @todo.done %>
+  <%= @todo.completed %>
 </p>
 
 <p>
   <strong>Priority:</strong>
-  <%= @todo.priority %>
+  <%= @todo.order %>
 </p>
 
 <%= link_to 'Edit', edit_todo_path(@todo) %> |
