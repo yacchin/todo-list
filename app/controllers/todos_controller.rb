@@ -2,8 +2,7 @@ class TodosController < ApplicationController
   skip_before_filter :verify_authenticity_token ,:only=>[:get_todo]
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
 
-  before_action :api_key_filter, only: [:get_todo,:update_todo]
-  before_action :todo_filter, only: [:update_todo]
+  before_action :api_key_filter, only: [:get_todo]
 
   # GET /todos
   # GET /todos.json
@@ -66,24 +65,10 @@ class TodosController < ApplicationController
   end
 
   def get_todo
+    update_todos(params[:todo]) if params[:todo]
     user = get_user(params[:api_key])
-    unless user.nil?
-      todos = Todo.where(user_id: user.id.to_i)
-      respond_to do |format| 
-        format.json {render :json => todos.to_json}
-      end
-    else
-      respond_to do |format| 
-        format.json {render :json => nil} and return
-      end
-    end
-  end
-
-  def update_todo
-    todo = params[:todo]
-    puts todo
     respond_to do |format| 
-      format.json {render :json => nil}
+      format.json {render :json => get_todos(user)}
     end
   end
 
@@ -110,11 +95,13 @@ class TodosController < ApplicationController
       user = User.find_by_api_key(api_key)
     end
 
-    def todo_filter
-      if params[:todo].nil?
-        respond_to do |format| 
-          format.json {render :json => nil}
-        end
+    def get_todos(user)
+      Todo.where(user_id: user.id.to_i).to_json
+    end
+
+    def update_todos(todos)
+      todos.each do |todo|
+        Todo.update(todo["id"], :content => todo["content"], :category_id => todo["category_id"], :user_id => todo["user_id"], :completed => todo["completed"], :order => todo["order"])
       end
     end
 

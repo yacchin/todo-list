@@ -9,10 +9,6 @@ TodoApi::Application.routes.draw do
 
   match '/api', to: 'todos#get_todo', via: :options
 
-  match '/update', to: 'todos#update_todo', via: :post
-
-  match '/update', to: 'todos#update_todo', via: :options
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
