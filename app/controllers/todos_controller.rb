@@ -65,8 +65,8 @@ class TodosController < ApplicationController
   end
 
   def get_todo
-    update_todos(params[:todo]) if params[:todo]
     user = get_user(params[:api_key])
+    update_todos(params[:todo],user) if params[:todo]
     respond_to do |format| 
       format.json {render :json => get_todos(user)}
     end
@@ -99,9 +99,13 @@ class TodosController < ApplicationController
       Todo.where(user_id: user.id.to_i).to_json
     end
 
-    def update_todos(todos)
+    def update_todos(todos,user)
       todos.each do |todo|
-        Todo.update(todo["id"], :content => todo["content"], :category_id => todo["category_id"], :user_id => todo["user_id"], :completed => todo["completed"], :order => todo["order"])
+        unless todo["id"].nil?
+          Todo.update(todo["id"], :content => todo["content"], :category_id => todo["category_id"], :completed => todo["completed"], :order => todo["order"])
+        else
+          Todo.create(:content => todo["content"], :category_id => todo["category_id"], :user_id => user.id, :completed => todo["completed"], :order => todo["order"])
+        end
       end
     end
 
