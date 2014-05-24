@@ -66,9 +66,9 @@ class TodosController < ApplicationController
 
   def get_todo
     user = get_user(params[:api_key])
-    update_todos(params[:todo],user) if params[:todo]
+    update_todos(params[:todo],user) unless params[:todo].blank?
     respond_to do |format| 
-      format.json {render :json => get_todos(user)}
+      format.json {render :json => get_todos(user).to_json}
     end
   end
 
@@ -96,10 +96,13 @@ class TodosController < ApplicationController
     end
 
     def get_todos(user)
-      Todo.where(user_id: user.id.to_i).to_json
+      Todo.where(user_id: user.id.to_i)
     end
 
     def update_todos(todos,user)
+      # before insert todos
+      before_todos = get_user_todo_ids(user)
+      # insert update
       todos.each do |todo|
         unless todo["id"].nil?
           Todo.update(todo["id"], :content => todo["content"], :category_id => todo["category_id"], :completed => todo["completed"], :order => todo["order"])
@@ -107,6 +110,28 @@ class TodosController < ApplicationController
           Todo.create(:content => todo["content"], :category_id => todo["category_id"], :user_id => user.id, :completed => todo["completed"], :order => todo["order"])
         end
       end
+      # delete
+      delete_todos(before_todos,todos,user)
     end
 
+    def delete_todos(before_todos,todos,user)
+      delete_todo_ids = before_todos - get_sent_todo(todos)
+      Todo.destroy(delete_todo_ids)
+    end
+
+    def get_user_todo_ids(user)
+      todo_ids_array = []
+      get_todos(user).each do |todo|
+        todo_ids_array << todo.id
+      end
+      todo_ids_array
+    end
+
+    def get_sent_todo(sent_todos)
+      todo_ids_array = []
+      sent_todos.each do |todo|
+        todo_ids_array << todo["id"]
+      end
+      todo_ids_array
+    end
 end
