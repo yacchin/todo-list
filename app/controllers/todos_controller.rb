@@ -66,7 +66,7 @@ class TodosController < ApplicationController
 
   def get_todo
     user = get_user(params[:api_key])
-    update_todos(params[:todo],user) unless params[:todo].blank?
+    update_todos(params[:todos],user) if params.has_key?(:todos)
     respond_to do |format| 
       format.json {render :json => get_todos(user).to_json}
     end
@@ -102,15 +102,9 @@ class TodosController < ApplicationController
     def update_todos(todos,user)
       # before insert todos
       before_todos = get_user_todo_ids(user)
-      # insert update
-      todos.each do |todo|
-        unless todo["id"].nil?
-          Todo.update(todo["id"], :content => todo["content"], :category_id => todo["category_id"], :completed => todo["completed"], :order => todo["order"])
-        else
-          Todo.create(:content => todo["content"], :category_id => todo["category_id"], :user_id => user.id, :completed => todo["completed"], :order => todo["order"])
-        end
-      end
-      # delete
+      # insert and update todos
+      create_and_update_todos(todos,user) unless todos.blank?
+      # delete todos
       delete_todos(before_todos,todos,user)
     end
 
@@ -129,9 +123,22 @@ class TodosController < ApplicationController
 
     def get_sent_todo(sent_todos)
       todo_ids_array = []
-      sent_todos.each do |todo|
-        todo_ids_array << todo["id"]
+      unless sent_todos.blank?
+        sent_todos.each do |todo|
+          todo_ids_array << todo["id"]
+        end
       end
       todo_ids_array
     end
+
+    def create_and_update_todos(todos,user)
+      todos.each do |todo|
+        unless todo["id"].nil?
+          Todo.update(todo["id"], :content => todo["content"], :category_id => todo["category_id"], :completed => todo["completed"], :order => todo["order"]) if Todo.find_by_id(todo["id"])
+        else
+          Todo.create(:content => todo["content"], :category_id => todo["category_id"], :user_id => user.id, :completed => todo["completed"], :order => todo["order"])
+        end
+      end
+    end
+
 end

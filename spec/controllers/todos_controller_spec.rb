@@ -39,7 +39,9 @@ describe TodosController do
     end
 
     it "with api_key" do
-      post :get_todo,{:api_key => "abcdefg"}, format: :json
+      params = {:api_key => "abcdefg"}
+      post :get_todo, params.to_json, { 'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json', :format => :json }
+      puts response
       response.should be_success
     end
 
