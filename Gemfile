@@ -9,6 +9,14 @@ gem 'json', '1.8.1'
 
 gem 'heroku'
 
+gem 'omniauth-twitter'
+
+gem 'omniauth-github'
+
+gem 'settingslogic'
+
+gem 'less-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 

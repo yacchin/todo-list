@@ -1,0 +1,17 @@
+defaults: &defaults
+
+development:
+  <<: *defaults
+  twitter:
+    consumer_key: j9gCxLRyM9Htqlh2FyYRKZpPz
+    consumer_secret: Ah7YbexUtBK0uvFax1mF99CVmxUbgn97mp3kX6R040TlYF9LNP
+
+  github:
+    consumer_key: 32a72215a528db8903df
+    consumer_secret: 249aaca65a086ed6f9c881899c3dad308927975b
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults

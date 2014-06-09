@@ -7,7 +7,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div id="user_nav">
+  <% if current_user %>
+    Welcome, <%= current_user.name %>!<br>
+    <%= current_user.name %>さん <%= link_to "ログアウト" ,logout_path %>
+  <% else %>
+    <%= link_to "Sign in with Twitter", "/auth/twitter" %>
+    <%= link_to "Sign in with Github", "/auth/github" %>
+  <% end %>
+</div>
 <%= yield %>
 
 </body>
