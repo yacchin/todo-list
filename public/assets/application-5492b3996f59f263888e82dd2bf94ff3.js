@@ -9,3 +9,9 @@
 //
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
+//= required js/libs/controll.js
+//= required js/libs/zepto.min.js
+//= required js/libs/underscore.min.js
+//= required js/libs/backbone.js
+//= required js/app.js
+;
