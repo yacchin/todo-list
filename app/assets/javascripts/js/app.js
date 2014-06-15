@@ -49,8 +49,8 @@ var todos = [];
 
       $.ajax({
         type: 'post',
-        //url: 'http://ancient-chamber-4185.herokuapp.com/api.json',
-        url: 'http://192.168.56.101:3000/api.json',
+        url: 'http://ancient-chamber-4185.herokuapp.com/api.json',
+        //url: 'http://192.168.56.101:3000/api.json',
         data: JSON.stringify(JSONdata),
         contentType: 'application/JSON',
         dataType: 'json',
@@ -188,8 +188,8 @@ $(function() {
   };
   $.ajax({
     type: 'post',
-    //url: 'http://ancient-chamber-4185.herokuapp.com/api.json',
-    url: 'http://192.168.56.101:3000/api.json',
+    url: 'http://ancient-chamber-4185.herokuapp.com/api.json',
+    //url: 'http://192.168.56.101:3000/api.json',
     data: JSON.stringify(JSONdata),
     contentType: 'application/JSON',
     dataType: 'json',
