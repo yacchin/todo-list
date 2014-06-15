@@ -21,7 +21,7 @@
 	</div>
 	<!-- logout tags end-->
 	
-	<section class="card today">
+	<!--<section class="card today">
 		<header class="header">
 			<small class="date">TUESDAY MAY 6TH</small>
 			<h2>TODAY</h2>
@@ -29,17 +29,29 @@
 		</header>
 		<ul class="todo-list"></ul>
 	</section>
+	-->
+
+	<script type="text/template" id="card-template">
+	  <header class="header">
+	    <small class="date">MONDAY FEBRUARY 6TH</small>
+	    <h2>{{categoryName.toUpperCase()}}</h2>
+	    <div class="add-button" data-category="{{category}}"></div>
+	  </header>
+	  <ul class="todo-list" data-category="{{category}}"></ul>
+	</script>
 
 	<script type="text/template" id="item-template">
 		<label data-order={{order}}>{{content}}</label>
 		<input class="edit" value="{{content}}" />
 	</script>
+
 	<script src="/assets/js/libs/controll.js"></script>
 	<script src="/assets/js/libs/zepto.min.js"></script>
 	<script src="/assets/js/libs/underscore.min.js"></script>
 	<script>_.templateSettings = { interpolate : /\{\{(.+?)\}\}/g };</script>
 	<script src="/assets/js/libs/backbone.js"></script>
-	<script src="/assets/js/app.js.erb"></script>
+	<script src="/assets/js/app.js"></script>
+	<script src="/assets/js/ui.js" defer></script>
 <!--</body>
 </html>
 -->

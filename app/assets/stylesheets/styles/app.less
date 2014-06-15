@@ -20,7 +20,7 @@ h2 {
   border: 0;
   border-radius: 0;
   background: transparent;
-  vertical-align: baseline;
+  vertical-align:middle;
   font-size: 100%;
   -ms-box-sizing: border-box;
   -o-box-sizing: border-box;
@@ -176,6 +176,23 @@ body {
     opacity: .3;
     background: @gray0;
   }
+}
+
+// ui //////////////////////////////////////////////
+#todoapp {
+  -webkit-transition: -webkit-transform .15s linear 0;
+}
+.card {
+  position: absolute;
+  border-right: solid 1px @gray0;
+}
+.today {
+}
+.later {
+  -webkit-transform: translateX(100%);
+}
+.schedule {
+  -webkit-transform: translateX(200%);
 }
 
 
