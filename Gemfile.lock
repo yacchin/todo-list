@@ -42,6 +42,9 @@ GEM
     execjs (2.0.2)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    gon (5.0.4)
+      actionpack (>= 2.3.0)
+      json
     hashie (2.1.1)
     heroku (3.7.3)
       heroku-api (~> 0.3.17)
@@ -192,6 +195,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   execjs
+  gon
   heroku
   jbuilder (~> 1.2)
   jquery-rails

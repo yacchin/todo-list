@@ -2,21 +2,23 @@
 <html>
 <head>
   <title>TodoApi</title>
+  <%= include_gon %>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  <meta charset="UTF-8">
+  <meta name="author" content="Kotaro Hirayama" href="humans.txt" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
+  <!--<title>TODO by MARK</title>-->
+  <link rel="stylesheet" href="/assets/styles/app.css">
 </head>
-<body>
-<div id="user_nav">
-  <% if current_user %>
-    Welcome, <%= current_user.name %>!<br>
-    <%= current_user.name %>さん <%= link_to "ログアウト" ,logout_path %>
-  <% else %>
-    <%= link_to "Sign in with Twitter", "/auth/twitter" %>
-    <%= link_to "Sign in with Github", "/auth/github" %>
-  <% end %>
-</div>
-<%= yield %>
+<body id="todoapp">
+
+  <%= yield %>
 
 </body>
 </html>

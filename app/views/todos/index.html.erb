@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en" data-framework="backbonejs">
 <head>
 	<meta charset="UTF-8">
@@ -11,7 +11,17 @@
 	<title>TODO by MARK</title>
 	<link rel="stylesheet" href="/assets/styles/app.css"></head>
 </head>
-<body id="todoapp">
+<body id="todoapp">-->
+	<!-- adding logout tags -->
+	<div id="user_nav">
+		<% if current_user %>
+		Welcome, <%= current_user.name %>!<br>
+		<%= current_user.name %>さん <%= link_to "ログアウト" ,logout_path %>
+		<%= current_user.api_key %>
+		<% end %>
+	</div>
+	<!-- logout tags end-->
+	
 	<section class="card today">
 		<header class="header">
 			<small class="date">TUESDAY MAY 6TH</small>
@@ -30,6 +40,7 @@
 	<script src="/assets/js/libs/underscore.min.js"></script>
 	<script>_.templateSettings = { interpolate : /\{\{(.+?)\}\}/g };</script>
 	<script src="/assets/js/libs/backbone.js"></script>
-	<script src="/assets/js/app.js"></script>
-</body>
+	<script src="/assets/js/app.js.erb"></script>
+<!--</body>
 </html>
+-->

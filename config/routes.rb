@@ -5,7 +5,7 @@ TodoApi::Application.routes.draw do
 
   resources :categories
 
-  #root :to => 'todos#index'
+  root :to => 'sessions#new'
 
   match '/api', to: 'todos#get_todo', via: :post
 
