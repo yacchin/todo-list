@@ -1,3 +1,5 @@
+var app = app || {};
+
 (function() {
   'use strict';
   app.Utils = {
@@ -32,6 +34,7 @@
       $('.header').on('swipeRight', this.prevCard);
     },
     moveCard: function(evt) {
+      console.log('fire');
       if ((evt.type == 'dragLeft' || evt.type == 'preswipeLeft') && app.UI.currentPage == 2) return;
       if ((evt.type == 'dragRight' || evt.type == 'preswipeRight') && app.UI.currentPage == 0) return;
       $('#todoapp').css('-webkit-transform', 'translateX(' + (evt.clientXdistance * 1.5 - 320 * app.UI.currentPage) + 'px)');
@@ -48,5 +51,4 @@
     }
   };
 
-  app.UI.init();
 })();

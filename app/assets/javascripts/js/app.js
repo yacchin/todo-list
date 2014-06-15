@@ -218,6 +218,7 @@ $(function() {
       };
 
       var AppView = new app.AppView();
+      app.UI.init();
     }
   });
 });
