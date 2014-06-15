@@ -17,7 +17,6 @@
 		<% if current_user %>
 		Welcome, <%= current_user.name %>!<br>
 		<%= current_user.name %>さん <%= link_to "ログアウト" ,logout_path %>
-		<%= current_user.api_key %>
 		<% end %>
 	</div>
 	<!-- logout tags end-->
