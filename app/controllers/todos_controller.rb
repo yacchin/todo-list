@@ -9,7 +9,6 @@ class TodosController < ApplicationController
   def index
     @todos = Todo.all
     gon.current_user_api_key = current_user.api_key
-    puts gon.current_user_api_key
   end
 
   # GET /todos/1
