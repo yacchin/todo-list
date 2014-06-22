@@ -1,0 +1,30 @@
+defaults: &defaults
+
+development:
+  <<: *defaults
+  twitter:
+    consumer_key: development_twitter_consumer_key
+    consumer_secret: development_twitter_consumer_secret
+
+  github:
+    consumer_key: development_github_consumer_key
+    consumer_secret: development_github_consumer_secret
+
+  api:
+    url: development_api_url
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
+  twitter:
+    consumer_key: production_twitter_consumer_key
+    consumer_secret: production_twitter_consumer_secret
+
+  github:
+    consumer_key: production_github_consumer_key
+    consumer_secret: production_github_consumer_secret
+
+  api:
+    url: production_api_url
