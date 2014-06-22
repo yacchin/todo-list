@@ -10,6 +10,9 @@ development:
     consumer_key: 32a72215a528db8903df
     consumer_secret: 249aaca65a086ed6f9c881899c3dad308927975b
 
+  api:
+    url: http://192.168.56.101:3000/api.json
+
 test:
   <<: *defaults
 
@@ -22,3 +25,6 @@ production:
   github:
     consumer_key: 696eb0a3cd04183894d3
     consumer_secret: 7016b1ede814268caec6010242e0dde33f95a644
+
+  api:
+    url: http://ancient-chamber-4185.herokuapp.com/api.json
